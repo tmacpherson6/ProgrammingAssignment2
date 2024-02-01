@@ -8,8 +8,30 @@
 
 ## First function, set null inverse matrix, retrieve matrix, set list of functions
 
-makeCacheMatrix <- function(x = matrix()) {
-
+makeCacheMatrix <- function(x=matrix()) {
+  #Start with a NULL inverse matrix
+  ci <- NULL
+  #set function updates teh matrix and resets the cached inverse
+  set<-function(y) {
+    x<<-y
+    ci<<-NULL
+  }
+  
+  #retrieve the matrix
+  get<-function()x
+  
+  #setinverse function sets the cached inverse
+  setinverse<-function(solve) ci<<-solve
+  
+  #getinverse retrieves the cached inverse
+  getinverse<-function() ci
+  
+  #get the row and column lengths
+  getnrow <- function() nrow(x)
+  getncol <- function() ncol(x)
+  
+  #return a list of functions
+  list(set=set,get=get,setinverse=setinverse,getinverse=getinverse,getnrow=getnrow,getncol=getncol)
 }
 
 
